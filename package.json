@@ -2,9 +2,9 @@
   "name": "@humanwhocodes/env",
   "version": "0.1.0",
   "description": "A utility to verify that environment variables exist.",
-  "main": "env.js",
+  "main": "src/env.js",
   "scripts": {
-    "lint": "eslint src/",
+    "lint": "eslint src/ tests/",
     "test": "npm run lint && mocha tests/"
   },
   "repository": {
