@@ -49,3 +49,17 @@ const username = env.get("USERNAME", "humanwhocodes");
 // read a variable and throw an error if it doesn't exist
 const username = env.require("USERNAME");
 ```
+
+You can also specify an alternate object to read variables from. This can be useful for testing:
+
+```js
+const env = new Env({
+    USERNAME: "humanwhocodes"
+});
+
+// read a variable and don't care if it's empty
+const username = env.get("USERNAME");
+
+// read a variable and throw an error if it doesn't exist
+const username = env.require("PASSWORD");
+```
