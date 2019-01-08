@@ -1,0 +1,25 @@
+{
+  "name": "@humanwhocodes/env",
+  "version": "0.1.0",
+  "description": "A utility to verify that environment variables exist.",
+  "main": "env.js",
+  "scripts": {
+    "lint": "eslint src/",
+    "test": "npm run lint && mocha tests/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/humanwhocodes/env.git"
+  },
+  "keywords": [
+    "nodejs",
+    "environment"
+  ],
+  "author": "Nicholas C. Zaks",
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.12.0",
+    "mocha": "^5.2.0"
+  }
+}
