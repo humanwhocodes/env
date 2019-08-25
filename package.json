@@ -2,8 +2,8 @@
   "name": "@humanwhocodes/env",
   "version": "0.1.1",
   "description": "A utility to verify that environment variables exist.",
-  "main": "dist/env.cjs.js",
-  "module": "dist/env.js",
+  "main": "./dist/env.cjs.js",
+  "module": "./dist/env.js",
   "files": [
     "./dist"
   ],
@@ -19,7 +19,9 @@
   },
   "keywords": [
     "nodejs",
-    "environment"
+    "deno",
+    "environment",
+    "environment variables"
   ],
   "author": "Nicholas C. Zaks",
   "license": "BSD-3-Clause",
