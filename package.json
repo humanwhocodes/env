@@ -2,10 +2,10 @@
   "name": "@humanwhocodes/env",
   "version": "0.2.1",
   "description": "A utility to verify that environment variables exist.",
-  "main": "./dist/env.cjs.js",
-  "module": "./dist/env.js",
+  "main": "dist/env.cjs.js",
+  "module": "dist/env.js",
   "files": [
-    "./dist"
+    "dist"
   ],
   "scripts": {
     "build": "rollup -c",
