@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "build": "rollup -c",
-    "prepublish": "npm run build",
+    "prepare": "npm run build",
     "lint": "eslint src/ tests/",
     "test": "npm run lint && mocha -r esm tests/"
   },
