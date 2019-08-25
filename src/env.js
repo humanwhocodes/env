@@ -2,6 +2,26 @@
  * @fileoverview A utility for ensuring that environment variables are present.
  */
 
+/*global Deno*/
+
+// create a default env source that will work regardless of environment
+const defaultEnvSource = (() => {
+
+    // Node.js
+    if (typeof process === "object") {
+        return process.env;
+    }
+
+    // Deno
+    if (typeof Deno !== "undefined") {
+        return Deno.env();
+    }
+
+    // Otherwise
+    return {};
+
+})();
+
 /**
  * A utility for interacting with environment variables
  */
@@ -11,7 +31,7 @@ export class Env {
      * Creates a new instance of Env.
      * @param {Object} source The environment variable object to read from. 
      */
-    constructor(source = process.env) {
+    constructor(source = defaultEnvSource) {
         this.source = source;
     }
 

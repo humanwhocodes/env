@@ -17,7 +17,7 @@ The most recent packages are found in these directories:
 
 ## Usage
 
-You must be using Node.js to use this utility.
+### Node.js
 
 Install using [npm][npm] or [yarn][yarn]:
 
@@ -32,10 +32,36 @@ yarn add @humanwhocodes/env
 Import into your Node.js project:
 
 ```js
+// CommonJS
 const { Env } = require("@humanwhocodes/env");
+
+// ESM
+import { Env } from "@humanwhocodes/env";
 ```
 
-After that, create a new instance of `Env` to start reading environment variables:
+By default, an `Env` instance will read from `process.env`.
+
+### Deno
+
+Import into your Deno project:
+
+```js
+import { Env } from "https://unpkg.com/@humanwhocodes/env/dist/env.js";
+```
+
+By default, an `Env` instance will read from `Deno.env()`.
+
+### Browser
+
+```js
+import { Env } from "https://unpkg.com/@humanwhocodes/env/dist/env.js";
+```
+
+By default, an `Env` instance will read from an empty object.
+
+## API
+
+After importing, create a new instance of `Env` to start reading environment variables:
 
 ```js
 const env = new Env();
@@ -50,7 +76,7 @@ const username = env.get("USERNAME", "humanwhocodes");
 const username = env.require("USERNAME");
 ```
 
-You can also specify an alternate object to read variables from. This can be useful for testing:
+You can also specify an alternate object to read variables from. This can be useful for testing or in the browser (where there is no environment variable to read from by default):
 
 ```js
 const env = new Env({
