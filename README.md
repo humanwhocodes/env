@@ -69,7 +69,7 @@ const env = new Env();
 // read a variable and don't care if it's empty
 const username = env.get("USERNAME");
 
-// read a variable and user a default if empty
+// read a variable and use a default if empty
 const username = env.get("USERNAME", "humanwhocodes");
 
 // read a variable and throw an error if it doesn't exist
