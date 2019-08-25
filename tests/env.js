@@ -3,14 +3,12 @@
  */
 /*global describe, it*/
 
-"use strict";
-
 //-----------------------------------------------------------------------------
 // Requirements
 //-----------------------------------------------------------------------------
 
-const assert = require("chai").assert;
-const { Env } = require("../src/env");
+import { Env } from "../src/env.js";
+import { assert } from "chai";
 
 //-----------------------------------------------------------------------------
 // Tests

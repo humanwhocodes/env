@@ -2,12 +2,10 @@
  * @fileoverview A utility for ensuring that environment variables are present.
  */
 
-"use strict";
-
 /**
  * A utility for interacting with environment variables
  */
-class Env {
+export class Env {
 
     /**
      * Creates a new instance of Env.
@@ -47,5 +45,3 @@ class Env {
     }
 
 }
-
-exports.Env = Env;
