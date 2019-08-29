@@ -8,13 +8,6 @@ If you find this useful, please consider supporting my work with a [donation](ht
 
 A utility for verifying that environment variables are present in Node.js. The main use case is to easily throw an error when an environment variable is missing. This is most useful immediately after a Node.js program has been initiated, to fail fast and let you know that environment variables haven't been setup correctly.
 
-## Folder Structure
-
-The most recent packages are found in these directories:
-
-* `src` - the implementation source code
-* `tests` - tests for the implementation source code
-
 ## Usage
 
 ### Node.js
@@ -52,6 +45,14 @@ import { Env } from "https://unpkg.com/@humanwhocodes/env/dist/env.js";
 By default, an `Env` instance will read from `Deno.env()`.
 
 ### Browser
+
+It's recommended to import the minified version to save bandwidth:
+
+```js
+import { Env } from "https://unpkg.com/@humanwhocodes/env/dist/env.min.js";
+```
+
+However, you can also import the unminified version for debugging purposes:
 
 ```js
 import { Env } from "https://unpkg.com/@humanwhocodes/env/dist/env.js";
