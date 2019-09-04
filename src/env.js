@@ -57,12 +57,16 @@ export class Env {
      * Retrieves an environment variable without checking for its presence.
      * Optionally returns a default value if the environment variable doesn't
      * exist.
-     * @param {string} key The environment variable name to retrieve.
+     * @param {string|array} key The environment variable name or names to retrieve.
      * @param {string} [defaultValue] The default value to return if the
      *      environment variable is not found.
      * @returns {string?} The environment variable value if found or null if not.
      */
     get(key, defaultValue = null) {
+        if (Array.isArray(key)) {
+            key = key.find(k => k in this.source);
+        }
+
         return (key in this.source) ? this.source[key] : defaultValue;
     }
 

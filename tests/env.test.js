@@ -34,7 +34,8 @@ describe("Env", () => {
     describe("get()", () => {
 
         const source = {
-            USERNAME: "humanwhocodes"
+            USERNAME: "humanwhocodes",
+            LASTNAME: "English"
         };
 
         it("should get an environment variable when it exists", () => {
@@ -55,6 +56,29 @@ describe("Env", () => {
             assert.strictEqual(value, 123);
         });
 
+        it("should find the first environment variable requested in an array", () => {
+            const env = new Env(source);
+            const value = env.get(["USERNAME", "LASTNAME"]);
+            assert.strictEqual(value, source.USERNAME);
+        });
+
+        it("should find the first environment variable requested in an array", () => {
+            const env = new Env(source);
+            const value = env.get(["NOT_USERNAME", "USERNAME"]);
+            assert.strictEqual(value, source.USERNAME);
+        });
+
+        it("should return null when no member of the array was found", () => {
+            const env = new Env(source);
+            const value = env.get(["NOT_USERNAME", "NOT_ANYTHING"]);
+            assert.isNull(value);
+        });
+
+        it("should return default value when no member of the array was found", () => {
+            const env = new Env(source);
+            const value = env.get(["NOT_USERNAME", "NOT_ANYTHING"], 123);
+            assert.strictEqual(value, 123);
+        });
 
     });
 
