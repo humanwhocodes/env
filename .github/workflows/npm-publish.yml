@@ -2,9 +2,8 @@ name: Node.js Package
 
 on:
   release:
-    branches:
-      - master
-  
+    types: [ published ]
+
 jobs:
   build:
     runs-on: ubuntu-latest
