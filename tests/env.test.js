@@ -96,7 +96,7 @@ describe("Env", () => {
             const env = new Env(source);
 
             assert.throws(() => {
-                const { PASSWORD } = env.required;
+                env.required.PASSWORD;
             }, /PASSWORD/);
         });
 
