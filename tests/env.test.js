@@ -80,4 +80,26 @@ describe("Env", () => {
 
     });
 
+    describe("required", () => {
+
+        const source = {
+            USERNAME: "humanwhocodes"
+        };
+
+        it("should get an environment variable when it exists", () => {
+            const env = new Env(source);
+            const { USERNAME: value } = env.required;
+            assert.strictEqual(value, source.USERNAME);
+        });
+
+        it("should throw an error when the environment variable doesn't exist", () => {
+            const env = new Env(source);
+
+            assert.throws(() => {
+                const { PASSWORD } = env.required;
+            }, /PASSWORD/);
+        });
+
+    });
+
 });

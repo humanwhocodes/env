@@ -4,6 +4,10 @@
 
 /*global Deno*/
 
+//-----------------------------------------------------------------------------
+// Helpers
+//-----------------------------------------------------------------------------
+
 // create a default env source that will work regardless of environment
 const defaultEnvSource = (() => {
 
@@ -21,6 +25,20 @@ const defaultEnvSource = (() => {
     return {};
 
 })();
+
+/**
+ * Throws an error saying that the key was found.
+ * @param {string} key The key to report as missing.
+ * @returns {void}
+ * @throws {Error} Always. 
+ */
+function keyNotFound(key) {
+    throw new Error(`Required environment variable '${key}' not found.`);
+}
+
+//-----------------------------------------------------------------------------
+// Main
+//-----------------------------------------------------------------------------
 
 /**
  * A utility for interacting with environment variables
@@ -58,10 +76,38 @@ export class Env {
     require(key) {
         const value = this.get(key);
         if (value === null) {
-            throw new Error(`Required environment variable '${key}' not found.`);
+            keyNotFound(key);
         } else {
             return value;
         }
+    }
+
+    /**
+     * Lazy-loading property containing a proxy that can be used to
+     * automatically throw errors when an undefined environment variable
+     * is accessed.
+     */
+    get required() {
+
+        const proxy = new Proxy(this.source, {
+            get(target, key) {
+                if (key in target) {
+                    return target[key];
+                }
+                
+                keyNotFound(key);
+            }
+        });
+
+        // redefine this property as a data attribute
+        Object.defineProperty(this, "required", {
+            value: proxy,
+            writable: false,
+            enumerable: false,
+            configurable: false
+        });
+
+        return proxy;
     }
 
 }

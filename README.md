@@ -6,7 +6,7 @@ If you find this useful, please consider supporting my work with a [donation](ht
 
 ## Description
 
-A utility for verifying that environment variables are present in Node.js. The main use case is to easily throw an error when an environment variable is missing. This is most useful immediately after a Node.js program has been initiated, to fail fast and let you know that environment variables haven't been setup correctly.
+A utility for verifying that environment variables are present in Node.js and Deno. The main use case is to easily throw an error when an environment variable is missing. This is most useful immediately after a Node.js or Deno program has been initiated, to fail fast and let you know that environment variables haven't been setup correctly.
 
 ## Usage
 
@@ -76,6 +76,19 @@ const username = env.get("USERNAME", "humanwhocodes");
 // read a variable and throw an error if it doesn't exist
 const username = env.require("USERNAME");
 ```
+
+To retrieve more than one required environment variable at one time, you can use the `required` property with destructuring assignment:
+
+```js
+const env = new Env();
+
+const {
+    CLIENT_ID,
+    CLIENT_SECRET
+} = env.required;
+```
+
+In this example, an error is thrown if either `CLIENT_ID` or `CLIENT_SECRET` is missing. The `required` property is a proxy object that throws an error whenever you attempt to access a property that doesn't exist.
 
 You can also specify an alternate object to read variables from. This can be useful for testing or in the browser (where there is no environment variable to read from by default):
 
