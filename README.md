@@ -101,7 +101,7 @@ const env = new Env({
 const username = env.get("USERNAME");
 
 // read a variable and throw an error if it doesn't exist
-const username = env.require("PASSWORD");
+const password = env.require("PASSWORD");
 ```
 
 [npm]: https://npmjs.com/
