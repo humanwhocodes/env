@@ -73,6 +73,9 @@ const username = env.get("USERNAME");
 // read a variable and use a default if empty
 const username = env.get("USERNAME", "humanwhocodes");
 
+// read the first found variable and use a default is empty
+const username = env.first(["USERNAME", "USERNAME2"], "humanwhocodes");
+
 // read a variable and throw an error if it doesn't exist
 const username = env.require("USERNAME");
 ```

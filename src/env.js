@@ -67,6 +67,31 @@ export class Env {
     }
 
     /**
+     * Retrieves the first environment variable found in a list of environment
+     * variable names. 
+     * Optionally returns a default value if the environment variable doesn't
+     * exist.
+     * @param {string[]} keys An array of environment variable names.
+     * @param {string} [defaultValue] The default value to return if the
+     *      environment variable is not found.
+     * @returns {string?} The environment variable value if found or null if not.
+     */
+    first(keys, defaultValue = null) {
+
+        if (!Array.isArray(keys) || keys.length < 2) {
+            throw new TypeError("First argument must be an array of two or more strings.");
+        }
+
+        for (const key of keys) {
+            if (key in this.source) {
+                return this.source[key];
+            }
+        }
+
+        return defaultValue;
+    }
+
+    /**
      * Retrieves an environment variable. If the environment variable does
      * not exist, then it throws an error.
      * @param {string} key The environment variable name to retrieve.

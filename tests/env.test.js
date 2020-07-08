@@ -58,6 +58,64 @@ describe("Env", () => {
 
     });
 
+    describe("first()", () => {
+
+        const source = {
+            USERNAME: "humanwhocodes",
+            USERNAME2: "nzakas"
+        };
+
+        it("should throw an error when the first argument is not an array", () => {
+            const env = new Env(source);
+
+            assert.throws(() => {
+                env.first("USERNAME");
+            }, /First argument/);
+
+        });
+
+        it("should throw an error when the first argument doesn't have at least two items", () => {
+            const env = new Env(source);
+
+            assert.throws(() => {
+                env.first(["USERNAME"]);
+            }, /First argument/);
+
+        });
+
+        it("should get the first environment variable when it exists", () => {
+            const env = new Env(source);
+            const value = env.first(["USERNAME", "ALT_USERNAME"]);
+            assert.strictEqual(value, source.USERNAME);
+        });
+
+        it("should get the first environment variable when both exist exists", () => {
+            const env = new Env(source);
+            const value = env.first(["USERNAME", "USERNAME2"]);
+            assert.strictEqual(value, source.USERNAME);
+        });
+
+        it("should get the second environment variable when it exists and the first doesn't", () => {
+            const env = new Env(source);
+            const value = env.first(["ALT_USERNAME", "USERNAME"]);
+            assert.strictEqual(value, source.USERNAME);
+        });
+
+        it("should return null when none of environment variables exist and there's no default", () => {
+            const env = new Env(source);
+            const value = env.first(["PASSWORD", "OTHER_PASSWORD"]);
+            assert.isNull(value);
+        });
+
+        it("should return 123 when none of the environment variables exist and 123 is the default", () => {
+            const env = new Env(source);
+            const value = env.first(["PASSWORD", "OTHER_PASSWORD"], 123);
+            assert.strictEqual(value, 123);
+        });
+
+
+    });
+
     describe("require()", () => {
 
         const source = {
