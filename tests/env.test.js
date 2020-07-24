@@ -58,6 +58,24 @@ describe("Env", () => {
 
     });
 
+    describe("has()", () => {
+
+        const source = {
+            USERNAME: "humanwhocodes"
+        };
+
+        it("should return true when the environment variable exists", () => {
+            const env = new Env(source);
+            assert.isTrue(env.has("USERNAME"));
+        });
+
+        it("should return false when the environment variable doesn't exist", () => {
+            const env = new Env(source);
+            assert.isFalse(env.has("OTHER"));
+        });
+
+    });
+
     describe("first()", () => {
 
         const source = {
@@ -119,7 +137,8 @@ describe("Env", () => {
     describe("require()", () => {
 
         const source = {
-            USERNAME: "humanwhocodes"
+            USERNAME: "humanwhocodes",
+            OTHER: ""
         };
 
         it("should get an environment variable when it exists", () => {
@@ -136,12 +155,50 @@ describe("Env", () => {
             }, /PASSWORD/);
         });
 
+        it("should throw an error when the environment variable is an empty string", () => {
+            const env = new Env(source);
+
+            assert.throws(() => {
+                env.require("OTHER");
+            }, /OTHER/);
+        });
+
+    });
+
+    describe("exists", () => {
+
+        const source = {
+            USERNAME: "humanwhocodes",
+            OTHER: ""
+        };
+
+        it("should get an environment variable when it exists", () => {
+            const env = new Env(source);
+            const { USERNAME: value } = env.exists;
+            assert.strictEqual(value, source.USERNAME);
+        });
+
+        it("should get an environment variable when it is an empty string", () => {
+            const env = new Env(source);
+            const { OTHER: value } = env.exists;
+            assert.strictEqual(value, source.OTHER);
+        });
+
+        it("should throw an error when the environment variable doesn't exist", () => {
+            const env = new Env(source);
+
+            assert.throws(() => {
+                env.exists.PASSWORD;
+            }, /PASSWORD/);
+        });
+
     });
 
     describe("required", () => {
 
         const source = {
-            USERNAME: "humanwhocodes"
+            USERNAME: "humanwhocodes",
+            OTHER: ""
         };
 
         it("should get an environment variable when it exists", () => {
@@ -156,6 +213,14 @@ describe("Env", () => {
             assert.throws(() => {
                 env.required.PASSWORD;
             }, /PASSWORD/);
+        });
+
+        it("should throw an error when the environment variable is an empty string", () => {
+            const env = new Env(source);
+
+            assert.throws(() => {
+                env.required.OTHER;
+            }, /OTHER/);
         });
 
     });

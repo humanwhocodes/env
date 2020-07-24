@@ -36,6 +36,16 @@ function keyNotFound(key) {
     throw new Error(`Required environment variable '${key}' not found.`);
 }
 
+/**
+ * Throws an error saying that the key was an empty string.
+ * @param {string} key The key to report as an empty string.
+ * @returns {void}
+ * @throws {Error} Always. 
+ */
+function emptyString(key) {
+    throw new Error(`Required environment variable '${key}' is an empty string.`);
+}
+
 //-----------------------------------------------------------------------------
 // Main
 //-----------------------------------------------------------------------------
@@ -67,6 +77,16 @@ export class Env {
     }
 
     /**
+     * Determines if a given environment variable exists.
+     * @param {string} key The environment variable name to check.
+     * @returns {boolean} True if the environment variable exists,
+     *      false if not.
+     */
+    has(key) {
+        return key in this.source;
+    }
+
+    /**
      * Retrieves the first environment variable found in a list of environment
      * variable names. 
      * Optionally returns a default value if the environment variable doesn't
@@ -93,15 +113,18 @@ export class Env {
 
     /**
      * Retrieves an environment variable. If the environment variable does
-     * not exist, then it throws an error.
+     * not exist or is an empty string, then it throws an error.
      * @param {string} key The environment variable name to retrieve.
      * @returns {string?} The environment variable value.
-     * @throws {Error} When the environment variable doesn't exist.
+     * @throws {Error} When the environment variable doesn't exist or is an
+     *      empty string.
      */
     require(key) {
         const value = this.get(key);
         if (value === null) {
             keyNotFound(key);
+        } else if (value === "") {
+            throw emptyString(key);
         } else {
             return value;
         }
@@ -112,9 +135,9 @@ export class Env {
      * automatically throw errors when an undefined environment variable
      * is accessed.
      */
-    get required() {
+    get exists() {
 
-        const proxy = new Proxy(this.source, {
+        const existsProxy = new Proxy(this.source, {
             get(target, key) {
                 if (key in target) {
                     return target[key];
@@ -125,14 +148,46 @@ export class Env {
         });
 
         // redefine this property as a data attribute
-        Object.defineProperty(this, "required", {
-            value: proxy,
+        Object.defineProperty(this, "exists", {
+            value: existsProxy,
             writable: false,
             enumerable: false,
             configurable: false
         });
 
-        return proxy;
+        return existsProxy;
+    }
+
+    /**
+     * Lazy-loading property containing a proxy that can be used to
+     * automatically throw errors when an undefined or empty string
+     * environment variable is accessed.
+     */
+    get required() {
+
+        const requiredProxy = new Proxy(this.source, {
+            get(target, key) {
+                if (key in target) {
+                    if (target[key] === "") {
+                        emptyString(key);
+                    }
+
+                    return target[key];
+                }
+                
+                keyNotFound(key);
+            }
+        });
+
+        // redefine this property as a data attribute
+        Object.defineProperty(this, "required", {
+            value: requiredProxy,
+            writable: false,
+            enumerable: false,
+            configurable: false
+        });
+
+        return requiredProxy;
     }
 
 }

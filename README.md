@@ -73,10 +73,14 @@ const username = env.get("USERNAME");
 // read a variable and use a default if empty
 const username = env.get("USERNAME", "humanwhocodes");
 
+// determine if a variable exists
+const username = env.has("USERNAME");
+
 // read the first found variable and use a default is empty
 const username = env.first(["USERNAME", "USERNAME2"], "humanwhocodes");
 
 // read a variable and throw an error if it doesn't exist
+// or is an empty string
 const username = env.require("USERNAME");
 ```
 
@@ -85,13 +89,26 @@ To retrieve more than one required environment variable at one time, you can use
 ```js
 const env = new Env();
 
+// throws if variables are undefined or an empty string
 const {
     CLIENT_ID,
     CLIENT_SECRET
 } = env.required;
 ```
 
-In this example, an error is thrown if either `CLIENT_ID` or `CLIENT_SECRET` is missing. The `required` property is a proxy object that throws an error whenever you attempt to access a property that doesn't exist.
+In this example, an error is thrown if either `CLIENT_ID` or `CLIENT_SECRET` is missing or an empty string. The `required` property is a proxy object that throws an error whenever you attempt to access a property that doesn't exist.
+
+If you don't want to throw an error for environment variables containing an empty string, use the `exists` property:
+
+```js
+const env = new Env();
+
+// throws only if variables are not defined
+const {
+    CLIENT_ID,
+    CLIENT_SECRET
+} = env.exists;
+```
 
 You can also specify an alternate object to read variables from. This can be useful for testing or in the browser (where there is no environment variable to read from by default):
 
