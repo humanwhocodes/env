@@ -42,7 +42,7 @@ Import into your Deno project:
 import { Env } from "https://unpkg.com/@humanwhocodes/env/dist/env.js";
 ```
 
-By default, an `Env` instance will read from `Deno.env()`.
+By default, an `Env` instance will read from `Deno.env`.
 
 ### Browser
 

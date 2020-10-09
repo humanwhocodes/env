@@ -18,7 +18,7 @@ const defaultEnvSource = (() => {
 
     // Deno
     if (typeof Deno !== "undefined") {
-        return Deno.env();
+        return Deno.env.toObject();
     }
 
     // Otherwise
