@@ -70,9 +70,13 @@ export class Env {
      * @param {string} key The environment variable name to retrieve.
      * @param {string} [defaultValue] The default value to return if the
      *      environment variable is not found.
-     * @returns {string?} The environment variable value if found or null if not.
+     * @returns {string?} The environment variable value if found or undefined if not.
      */
-    get(key, defaultValue = null) {
+    get(key, defaultValue) {
+        if (typeof defaultValue !== "undefined") {
+            defaultValue = String(defaultValue);
+        }
+
         return (key in this.source) ? this.source[key] : defaultValue;
     }
 
@@ -94,9 +98,9 @@ export class Env {
      * @param {string[]} keys An array of environment variable names.
      * @param {string} [defaultValue] The default value to return if the
      *      environment variable is not found.
-     * @returns {string?} The environment variable value if found or null if not.
+     * @returns {string?} The environment variable value if found or undefined if not.
      */
-    first(keys, defaultValue = null) {
+    first(keys, defaultValue) {
 
         if (!Array.isArray(keys) || keys.length < 2) {
             throw new TypeError("First argument must be an array of two or more strings.");
@@ -106,6 +110,10 @@ export class Env {
             if (key in this.source) {
                 return this.source[key];
             }
+        }
+
+        if (typeof defaultValue !== "undefined") {
+            defaultValue = String(defaultValue);
         }
 
         return defaultValue;
@@ -121,7 +129,7 @@ export class Env {
      */
     require(key) {
         const value = this.get(key);
-        if (value === null) {
+        if (typeof value === "undefined") {
             keyNotFound(key);
         } else if (value === "") {
             throw emptyString(key);

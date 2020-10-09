@@ -43,16 +43,16 @@ describe("Env", () => {
             assert.strictEqual(value, source.USERNAME);
         });
 
-        it("should return null when the environment variable doesn't exist and there's no default", () => {
+        it("should return undefined when the environment variable doesn't exist and there's no default", () => {
             const env = new Env(source);
             const value = env.get("PASSWORD");
-            assert.isNull(value);
+            assert.isUndefined(value);
         });
 
-        it("should return 123 when the environment variable doesn't exist and 123 is the default", () => {
+        it("should return the string 123 when the environment variable doesn't exist and 123 is the default", () => {
             const env = new Env(source);
             const value = env.get("PASSWORD", 123);
-            assert.strictEqual(value, 123);
+            assert.strictEqual(value, "123");
         });
 
 
@@ -119,16 +119,16 @@ describe("Env", () => {
             assert.strictEqual(value, source.USERNAME);
         });
 
-        it("should return null when none of environment variables exist and there's no default", () => {
+        it("should return undefined when none of environment variables exist and there's no default", () => {
             const env = new Env(source);
             const value = env.first(["PASSWORD", "OTHER_PASSWORD"]);
-            assert.isNull(value);
+            assert.isUndefined(value);
         });
 
-        it("should return 123 when none of the environment variables exist and 123 is the default", () => {
+        it("should return the string '123' when none of the environment variables exist and 123 is the default", () => {
             const env = new Env(source);
             const value = env.first(["PASSWORD", "OTHER_PASSWORD"], 123);
-            assert.strictEqual(value, 123);
+            assert.strictEqual(value, "123");
         });
 
 
