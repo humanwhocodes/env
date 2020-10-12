@@ -39,7 +39,7 @@ By default, an `Env` instance will read from `process.env`.
 Import into your Deno project:
 
 ```js
-import { Env } from "https://unpkg.com/@humanwhocodes/env/dist/env.js";
+import { Env } from "https://deno.land/x/oak@v2.0.1/env.js";
 ```
 
 By default, an `Env` instance will read from `Deno.env`.
