@@ -57,9 +57,15 @@ export class Env {
 
     /**
      * Creates a new instance of Env.
-     * @param {Object} source The environment variable object to read from. 
+     * @param {object} [source] The environment variable object to read from. 
      */
     constructor(source = defaultEnvSource) {
+
+        /**
+         * The object from which to read environment information.
+         * @property source
+         * @type object
+         */
         this.source = source;
     }
 
@@ -70,7 +76,7 @@ export class Env {
      * @param {string} key The environment variable name to retrieve.
      * @param {string} [defaultValue] The default value to return if the
      *      environment variable is not found.
-     * @returns {string?} The environment variable value if found or undefined if not.
+     * @returns {string|undefined} The environment variable value if found or undefined if not.
      */
     get(key, defaultValue) {
         if (typeof defaultValue !== "undefined") {
@@ -98,7 +104,7 @@ export class Env {
      * @param {string[]} keys An array of environment variable names.
      * @param {string} [defaultValue] The default value to return if the
      *      environment variable is not found.
-     * @returns {string?} The environment variable value if found or undefined if not.
+     * @returns {string|undefined} The environment variable value if found or undefined if not.
      */
     first(keys, defaultValue) {
 
@@ -123,7 +129,7 @@ export class Env {
      * Retrieves an environment variable. If the environment variable does
      * not exist or is an empty string, then it throws an error.
      * @param {string} key The environment variable name to retrieve.
-     * @returns {string?} The environment variable value.
+     * @returns {string|undefined} The environment variable value.
      * @throws {Error} When the environment variable doesn't exist or is an
      *      empty string.
      */
@@ -142,6 +148,7 @@ export class Env {
      * Lazy-loading property containing a proxy that can be used to
      * automatically throw errors when an undefined environment variable
      * is accessed.
+     * @type {object}
      */
     get exists() {
 
@@ -170,6 +177,7 @@ export class Env {
      * Lazy-loading property containing a proxy that can be used to
      * automatically throw errors when an undefined or empty string
      * environment variable is accessed.
+     * @type {object}
      */
     get required() {
 

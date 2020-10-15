@@ -1,0 +1,11 @@
+{
+    "include": [
+        "dist/env.js"
+    ],
+    "compilerOptions": {
+        "declaration": true,
+        "noEmit": false,
+        "emitDeclarationOnly": true,
+        "allowJs": true
+    }
+}
