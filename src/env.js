@@ -148,7 +148,7 @@ export class Env {
      * Lazy-loading property containing a proxy that can be used to
      * automatically throw errors when an undefined environment variable
      * is accessed.
-     * @type {object}
+     * @returns {object} A proxy object.
      */
     get exists() {
 
@@ -177,7 +177,7 @@ export class Env {
      * Lazy-loading property containing a proxy that can be used to
      * automatically throw errors when an undefined or empty string
      * environment variable is accessed.
-     * @type {object}
+     * @returns {object} A proxy object.
      */
     get required() {
 
