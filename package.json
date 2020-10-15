@@ -17,7 +17,8 @@
   "lint-staged": {
     "*.js": [
       "eslint --fix",
-      "tsc --allowJs -d --emitDeclarationOnly"
+      "tsc --allowJs -d --emitDeclarationOnly",
+      "git add"
     ]
   },
   "funding": {

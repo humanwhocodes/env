@@ -170,6 +170,7 @@ export class Env {
             configurable: false
         });
 
+        /** @type object */
         return existsProxy;
     }
 
@@ -203,6 +204,7 @@ export class Env {
             configurable: false
         });
 
+        /** @type object */
         return requiredProxy;
     }
 
