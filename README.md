@@ -39,7 +39,7 @@ By default, an `Env` instance will read from `process.env`.
 Import into your Deno project:
 
 ```js
-import { Env } from "https://deno.land/x/oak@v2.0.1/env.js";
+import { Env } from "https://deno.land/x/env@v2.1.0/env.js";
 ```
 
 By default, an `Env` instance will read from `Deno.env`.
@@ -123,6 +123,19 @@ const username = env.get("USERNAME");
 // read a variable and throw an error if it doesn't exist
 const password = env.require("PASSWORD");
 ```
+
+## Developer Setup
+
+1. Fork the repository
+2. Clone your fork
+3. Run `npm install` to setup dependencies
+4. Run `npm test` to run tests
+
+**Note:** The `src/env.d.ts` file is automatically generated and should not be modified directly. If you modify `src/env.js` then `src/env.d.ts` will be generated using a precommit hook.
+
+## License
+
+BSD 3-Clause
 
 [npm]: https://npmjs.com/
 [yarn]: https://yarnpkg.com/
