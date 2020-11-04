@@ -42,6 +42,12 @@ Import into your Deno project:
 import { Env } from "https://deno.land/x/env/env.js";
 ```
 
+Or
+
+```js
+import { Env } from "https://cdn.skypack.dev/@humanwhocodes/env";
+```
+
 By default, an `Env` instance will read from `Deno.env`.
 
 ### Browser
