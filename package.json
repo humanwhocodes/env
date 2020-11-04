@@ -5,6 +5,12 @@
   "main": "dist/env.cjs.js",
   "module": "dist/env.js",
   "types": "dist/env.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/env.cjs.js",
+      "import": "./dist/env.js"
+    }
+  },
   "files": [
     "dist"
   ],
