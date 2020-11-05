@@ -39,12 +39,6 @@ By default, an `Env` instance will read from `process.env`.
 Import into your Deno project:
 
 ```js
-import { Env } from "https://deno.land/x/env/env.js";
-```
-
-Or from Skypack:
-
-```js
 import { Env } from "https://cdn.skypack.dev/@humanwhocodes/env?dts";
 ```
 
@@ -55,22 +49,10 @@ By default, an `Env` instance will read from `Deno.env`.
 It's recommended to import the minified version to save bandwidth:
 
 ```js
-import { Env } from "https://unpkg.com/@humanwhocodes/env/dist/env.min.js";
-```
-
-Or from Skypack:
-
-```js
 import { Env } from "https://cdn.skypack.dev/@humanwhocodes/env?min";
 ```
 
 However, you can also import the unminified version for debugging purposes:
-
-```js
-import { Env } from "https://unpkg.com/@humanwhocodes/env/dist/env.js";
-```
-
-Or from Skypack:
 
 ```js
 import { Env } from "https://cdn.skypack.dev/@humanwhocodes/env";
