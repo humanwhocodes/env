@@ -75,7 +75,7 @@ const username = env.get("USERNAME");
 const username = env.get("USERNAME", "humanwhocodes");
 
 // determine if a variable exists
-const username = env.has("USERNAME");
+const usernameExists = env.has("USERNAME");
 
 // read the first found variable and use a default is empty
 const username = env.first(["USERNAME", "USERNAME2"], "humanwhocodes");
