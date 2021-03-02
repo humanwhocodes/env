@@ -5,11 +5,11 @@ export default [
         input: "src/env.js",
         output: [
             {
-                file: "dist/env.cjs.js",
+                file: "dist/env.js",
                 format: "cjs"
             },
             {
-                file: "dist/env.js",
+                file: "dist/env.mjs",
                 format: "esm"
             }
         ]
