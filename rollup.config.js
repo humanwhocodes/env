@@ -9,7 +9,7 @@ export default [
                 format: "cjs"
             },
             {
-                file: "dist/env.js",
+                file: "dist/env.mjs",
                 format: "esm"
             }
         ]
