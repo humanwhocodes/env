@@ -132,8 +132,6 @@ const password = env.require("PASSWORD");
 3. Run `npm install` to setup dependencies
 4. Run `npm test` to run tests
 
-**Note:** The `src/env.d.ts` file is automatically generated and should not be modified directly. If you modify `src/env.js` then `src/env.d.ts` will be generated using a precommit hook.
-
 ## License
 
 BSD 3-Clause

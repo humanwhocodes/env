@@ -20,9 +20,7 @@
   },
   "lint-staged": {
     "*.js": [
-      "eslint --fix",
-      "tsc --allowJs -d --emitDeclarationOnly",
-      "git add"
+      "eslint --fix"
     ]
   },
   "funding": {
