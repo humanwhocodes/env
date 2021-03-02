@@ -2,11 +2,11 @@
   "name": "@humanwhocodes/env",
   "version": "2.1.2",
   "description": "A utility to verify that environment variables exist.",
-  "main": "dist/env.cjs.js",
+  "main": "dist/env.js",
   "module": "dist/env.mjs",
   "types": "dist/env.d.ts",
   "exports": {
-    "require": "./dist/env.cjs.js",
+    "require": "./dist/env.js",
     "import": "./dist/env.mjs"
   },
   "files": [

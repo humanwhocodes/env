@@ -1,6 +1,6 @@
 {
     "include": [
-        "dist/env.mjs"
+        "dist/env.js"
     ],
     "compilerOptions": {
         "declaration": true,
