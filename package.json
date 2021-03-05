@@ -2,11 +2,11 @@
   "name": "@humanwhocodes/env",
   "version": "2.1.3",
   "description": "A utility to verify that environment variables exist.",
-  "main": "dist/env.js",
+  "main": "dist/env.cjs.js",
   "module": "dist/env.mjs",
   "types": "dist/env.d.ts",
   "exports": {
-    "require": "./dist/env.js",
+    "require": "./dist/env.cjs.js",
     "import": "./dist/env.mjs"
   },
   "files": [
@@ -34,7 +34,7 @@
     "pretest": "npm run build",
     "test:unit": "mocha -r esm tests/env.test.js",
     "test:build": "node tests/pkg.test.cjs && node tests/pkg.test.mjs",
-    "test:types": "cd tests/fixtures/typescript-project && npm i && tsc index.ts",
+    "test:types": "node tests/types.test.js",
     "test": "npm run test:unit && npm run test:build && npm run test:types"
   },
   "repository": {
