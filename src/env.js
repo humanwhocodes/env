@@ -129,7 +129,7 @@ export class Env {
      * Retrieves an environment variable. If the environment variable does
      * not exist or is an empty string, then it throws an error.
      * @param {string} key The environment variable name to retrieve.
-     * @returns {string|undefined} The environment variable value.
+     * @returns {string} The environment variable value.
      * @throws {Error} When the environment variable doesn't exist or is an
      *      empty string.
      */
