@@ -146,6 +146,27 @@ export class Env {
     }
 
     /**
+     * Retrieves the first environment variable found in a list of environment
+     * variable names and throws an error if none of the variables are found. 
+     * @param {string[]} keys An array of environment variable names.
+     * @returns {string} The environment variable value.
+     * @throws {TypeError} If keys is not an array with at least one item.
+     * @throws {Error} When the environment variable doesn't exist or is an
+     *      empty string.
+     */
+    requireFirst(keys) {
+
+        const value = this.first(keys);
+        if (typeof value === "undefined") {
+            keyNotFound(`[${keys}]`);
+        } else if (value === "") {
+            throw emptyString(`[${keys}]`);
+        } else {
+            return value;
+        }
+    }
+
+    /**
      * Lazy-loading property containing a proxy that can be used to
      * automatically throw errors when an undefined environment variable
      * is accessed.

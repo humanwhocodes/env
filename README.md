@@ -58,7 +58,6 @@ However, you can also import the unminified version for debugging purposes:
 import { Env } from "https://cdn.skypack.dev/@humanwhocodes/env";
 ```
 
-
 By default, an `Env` instance will read from an empty object.
 
 ## API
@@ -83,6 +82,9 @@ const username = env.first(["USERNAME", "USERNAME2"], "humanwhocodes");
 // read a variable and throw an error if it doesn't exist
 // or is an empty string
 const username = env.require("USERNAME");
+
+// read the first found variable throw an error if none exist
+const username = env.requireFirst(["USERNAME", "USERNAME2"]);
 ```
 
 To retrieve more than one required environment variable at one time, you can use the `required` property with destructuring assignment:

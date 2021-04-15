@@ -171,6 +171,66 @@ describe("Env", () => {
 
     });
 
+    describe("requireFirst()", () => {
+
+        const source = {
+            USERNAME: "humanwhocodes",
+            USERNAME2: "nzakas"
+        };
+
+        it("should throw an error when the first argument is not an array", () => {
+            const env = new Env(source);
+
+            assert.throws(() => {
+                env.requireFirst("USERNAME");
+            }, /First argument/);
+
+        });
+
+        it("should throw an error when the first argument doesn't have at least one item", () => {
+            const env = new Env(source);
+
+            assert.throws(() => {
+                env.requireFirst([]);
+            }, /First argument/);
+
+        });
+
+        it("should throw an error when none of the arguments exist", () => {
+            const env = new Env(source);
+
+            assert.throws(() => {
+                env.requireFirst(["foo", "bar"]);
+            }, /Required environment variable '\[foo,bar\]' not found/);
+
+        });
+
+        it("should get the first environment variable when one exists", () => {
+            const env = new Env(source);
+            const value = env.requireFirst(["USERNAME"]);
+            assert.strictEqual(value, source.USERNAME);
+        });
+
+        it("should get the first environment variable when only one exists", () => {
+            const env = new Env(source);
+            const value = env.requireFirst(["USERNAME", "ALT_USERNAME"]);
+            assert.strictEqual(value, source.USERNAME);
+        });
+
+        it("should get the first environment variable when both exist exists", () => {
+            const env = new Env(source);
+            const value = env.requireFirst(["USERNAME", "USERNAME2"]);
+            assert.strictEqual(value, source.USERNAME);
+        });
+
+        it("should get the second environment variable when it exists and the first doesn't", () => {
+            const env = new Env(source);
+            const value = env.requireFirst(["ALT_USERNAME", "USERNAME"]);
+            assert.strictEqual(value, source.USERNAME);
+        });
+
+    });
+
     describe("exists", () => {
 
         const source = {
