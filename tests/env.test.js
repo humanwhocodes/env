@@ -92,16 +92,22 @@ describe("Env", () => {
 
         });
 
-        it("should throw an error when the first argument doesn't have at least two items", () => {
+        it("should throw an error when the first argument doesn't have at least one item", () => {
             const env = new Env(source);
 
             assert.throws(() => {
-                env.first(["USERNAME"]);
+                env.first([]);
             }, /First argument/);
 
         });
 
-        it("should get the first environment variable when it exists", () => {
+        it("should get the first environment variable when one exists", () => {
+            const env = new Env(source);
+            const value = env.first(["USERNAME"]);
+            assert.strictEqual(value, source.USERNAME);
+        });
+
+        it("should get the first environment variable when only one exists", () => {
             const env = new Env(source);
             const value = env.first(["USERNAME", "ALT_USERNAME"]);
             assert.strictEqual(value, source.USERNAME);

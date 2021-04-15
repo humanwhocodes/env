@@ -105,11 +105,12 @@ export class Env {
      * @param {string} [defaultValue] The default value to return if the
      *      environment variable is not found.
      * @returns {string|undefined} The environment variable value if found or undefined if not.
+     * @throws {TypeError} If keys is not an array with at least one item.
      */
     first(keys, defaultValue) {
 
-        if (!Array.isArray(keys) || keys.length < 2) {
-            throw new TypeError("First argument must be an array of two or more strings.");
+        if (!Array.isArray(keys) || keys.length < 1) {
+            throw new TypeError("First argument must be an array of one or more strings.");
         }
 
         for (const key of keys) {
