@@ -68,3 +68,6 @@ tests/fixtures/typescript-project/index.js
 
 # file used to generate env.d.ts
 dist/env.js
+
+# idea project config
+.idea

@@ -83,7 +83,7 @@ export class Env {
             defaultValue = String(defaultValue);
         }
 
-        return (key in this.source) ? this.source[key] : defaultValue;
+        return (this.has(key)) ? this.source[key] : defaultValue;
     }
 
     /**
@@ -108,13 +108,12 @@ export class Env {
      * @throws {TypeError} If keys is not an array with at least one item.
      */
     first(keys, defaultValue) {
-
         if (!Array.isArray(keys) || keys.length < 1) {
             throw new TypeError("First argument must be an array of one or more strings.");
         }
 
         for (const key of keys) {
-            if (key in this.source) {
+            if (this.has(key)) {
                 return this.source[key];
             }
         }
@@ -136,6 +135,7 @@ export class Env {
      */
     require(key) {
         const value = this.get(key);
+
         if (typeof value === "undefined") {
             keyNotFound(key);
         } else if (value === "") {
@@ -155,8 +155,8 @@ export class Env {
      *      empty string.
      */
     requireFirst(keys) {
-
         const value = this.first(keys);
+
         if (typeof value === "undefined") {
             keyNotFound(`[${keys}]`);
         } else if (value === "") {
@@ -173,7 +173,6 @@ export class Env {
      * @returns {object} A proxy object.
      */
     get exists() {
-
         const existsProxy = new Proxy(this.source, {
             get(target, key) {
                 if (key in target) {
@@ -203,7 +202,6 @@ export class Env {
      * @returns {object} A proxy object.
      */
     get required() {
-
         const requiredProxy = new Proxy(this.source, {
             get(target, key) {
                 if (key in target) {
