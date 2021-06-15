@@ -139,7 +139,7 @@ export class Env {
         if (typeof value === "undefined") {
             keyNotFound(key);
         } else if (value === "") {
-            throw emptyString(key);
+            emptyString(key);
         } else {
             return value;
         }
@@ -160,7 +160,7 @@ export class Env {
         if (typeof value === "undefined") {
             keyNotFound(`[${keys}]`);
         } else if (value === "") {
-            throw emptyString(`[${keys}]`);
+            emptyString(`[${keys}]`);
         } else {
             return value;
         }
