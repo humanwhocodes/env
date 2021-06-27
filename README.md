@@ -83,6 +83,11 @@ const username = env.first(["USERNAME", "USERNAME2"], "humanwhocodes");
 // or is an empty string
 const username = env.require("USERNAME");
 
+// read a variable and throw an error if it doesn't match 
+// the provided regular expression,doesn't exist or is an 
+// empty string
+const password = env.requireMatch("PASSWORD", /^(?=.*\d).{8,}$/);
+
 // read the first found variable throw an error if none exist
 const username = env.requireFirst(["USERNAME", "USERNAME2"]);
 ```

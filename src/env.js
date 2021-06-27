@@ -46,6 +46,26 @@ function emptyString(key) {
     throw new Error(`Required environment variable '${key}' is an empty string.`);
 }
 
+/**
+ * Throws an error saying that the key was not matched against a regexp.
+ * @param {string} key The key to report as not matching.
+ * @param {string} regexp The regexp which the key failed to match.
+ * @returns {void}
+ * @throws {Error} Always. 
+ */
+function regularExpressionNotMatch(key, regexp) {
+    throw new Error(`Required environment variable '${key}' must match the regular expression '${regexp}'.`);
+}
+
+/**
+ * Throws an error saying that a required regular expression was not provided.
+ * @returns {void}
+ * @throws {Error} Always. 
+ */
+function missingOrInvalidRegularExpression() {
+    throw new Error("Required regular expression was missing or invalid.");
+}
+
 //-----------------------------------------------------------------------------
 // Main
 //-----------------------------------------------------------------------------
@@ -144,6 +164,30 @@ export class Env {
             return value;
         }
     }
+
+    /**
+     * Retrieves an environment variable. If the environment variable does
+     * not exist or is an empty string, then it throws an error.
+     * @param {string} key The environment variable name to retrieve.
+     * @param {string} regexp The regular expression which the required environment variable must match against
+     * @returns {string} The environment variable value.
+     * @throws {Error} When the environment variable doesn't exist, is an
+     *      empty string or does match the provided regular expression.
+     */
+    requireMatch(key, regexp) {
+
+        if (!regexp || !(regexp instanceof RegExp)) {
+            missingOrInvalidRegularExpression();
+        }
+
+        const value = this.require(key);
+        if (value.match(regexp)) {
+            return value;
+        } else {
+            regularExpressionNotMatch(key, regexp);
+        }
+    }
+
 
     /**
      * Retrieves the first environment variable found in a list of environment

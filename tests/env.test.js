@@ -291,4 +291,59 @@ describe("Env", () => {
 
     });
 
+    describe("requireMatch()", () => {
+        const regexp = /humanwhocodes/;
+        const source = {
+            USERNAME: "humanwhocodes",
+            OTHER: ""
+        };
+
+        it("should get an environment variable when it exists and matches a given regular expression", () => {
+            const env = new Env(source);
+            const value = env.requireMatch("USERNAME", regexp);
+            assert.strictEqual(value, source.USERNAME);
+        });
+
+        it("should throw an error when the environment variable doesn't exist", () => {
+            const env = new Env(source);
+
+            assert.throws(() => {
+                env.require("PASSWORD");
+            }, /PASSWORD/);
+        });
+
+        it("should throw an error when the environment variable is an empty string", () => {
+            const env = new Env(source);
+
+            assert.throws(() => {
+                env.require("OTHER");
+            }, /OTHER/);
+        });
+
+        it("should throw an error when the environment variable does not match the given regular expression", () => {
+            const env = new Env(source);
+
+            assert.throws(() => {
+                env.requireMatch("OTHER", regexp);
+            }, /OTHER/);
+        });
+
+        it("should throw an error when the regular expression is not provided", () => {
+            const env = new Env(source);
+
+            assert.throws(() => {
+                env.requireMatch("USERNAME");
+            }, /missing/);
+        });
+
+        it("should throw an error when the regular expression is invalid", () => {
+            const env = new Env(source);
+
+            assert.throws(() => {
+                env.requireMatch("USERNAME", "not a regexp");
+            }, /invalid/);
+        });        
+
+    });
+
 });
