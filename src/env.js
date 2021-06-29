@@ -167,9 +167,10 @@ export class Env {
 
     /**
      * Retrieves an environment variable. If the environment variable does
-     * not exist or is an empty string, then it throws an error.
+     * not match a given regular expression, doesn't exist or is an empty 
+     * string, then it throws an error.
      * @param {string} key The environment variable name to retrieve.
-     * @param {string} regexp The regular expression which the required environment variable must match against
+     * @param {RegExp} regexp The regular expression which the required environment variable must match against
      * @returns {string} The environment variable value.
      * @throws {Error} When the environment variable doesn't exist, is an
      *      empty string or does match the provided regular expression.
