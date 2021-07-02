@@ -40,7 +40,7 @@ function keyNotFound(key) {
  * Throws an error saying that the key was an empty string.
  * @param {string} key The key to report as an empty string.
  * @returns {void}
- * @throws {Error} Always. 
+ * @throws {Error} Always.
  */
 function emptyString(key) {
     throw new Error(`Required environment variable '${key}' is an empty string.`);
@@ -139,7 +139,7 @@ export class Env {
         if (typeof value === "undefined") {
             keyNotFound(key);
         } else if (value === "") {
-            throw emptyString(key);
+            emptyString(key);
         } else {
             return value;
         }
@@ -160,7 +160,7 @@ export class Env {
         if (typeof value === "undefined") {
             keyNotFound(`[${keys}]`);
         } else if (value === "") {
-            throw emptyString(`[${keys}]`);
+            emptyString(`[${keys}]`);
         } else {
             return value;
         }
