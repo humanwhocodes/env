@@ -1,10 +1,13 @@
 {
     "include": [
-        "dist/env.js"
+        "src/env.js"
     ],
     "compilerOptions": {
         "declaration": true,
         "emitDeclarationOnly": true,
-        "allowJs": true
+        "allowJs": true,
+        "checkJs": true,
+        "target": "ES2015",
+        "outDir": "dist"
     }
 }

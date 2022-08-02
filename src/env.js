@@ -17,7 +17,9 @@ const defaultEnvSource = (() => {
     }
 
     // Deno
+    // @ts-ignore
     if (typeof Deno !== "undefined") {
+        // @ts-ignore
         return Deno.env.toObject();
     }
 
@@ -28,22 +30,22 @@ const defaultEnvSource = (() => {
 
 /**
  * Throws an error saying that the key was found.
- * @param {string} key The key to report as missing.
+ * @param {PropertyKey} key The key to report as missing.
  * @returns {void}
  * @throws {Error} Always. 
  */
 function keyNotFound(key) {
-    throw new Error(`Required environment variable '${key}' not found.`);
+    throw new Error(`Required environment variable '${String(key)}' not found.`);
 }
 
 /**
  * Throws an error saying that the key was an empty string.
- * @param {string} key The key to report as an empty string.
+ * @param {PropertyKey} key The key to report as an empty string.
  * @returns {void}
  * @throws {Error} Always.
  */
 function emptyString(key) {
-    throw new Error(`Required environment variable '${key}' is an empty string.`);
+    throw new Error(`Required environment variable '${String(key)}' is an empty string.`);
 }
 
 //-----------------------------------------------------------------------------
@@ -63,8 +65,7 @@ export class Env {
 
         /**
          * The object from which to read environment information.
-         * @property source
-         * @type object
+         * @type {object}
          */
         this.source = source;
     }
@@ -73,17 +74,20 @@ export class Env {
      * Retrieves an environment variable without checking for its presence.
      * Optionally returns a default value if the environment variable doesn't
      * exist.
+     * @template [S=undefined]
      * @param {string} key The environment variable name to retrieve.
-     * @param {string} [defaultValue] The default value to return if the
+     * @param {S} [defaultValue] The default value to return if the
      *      environment variable is not found.
-     * @returns {string|undefined} The environment variable value if found or undefined if not.
+     * @returns {S extends string ? S : (string|S)} The environment variable value if found or undefined if not.
      */
     get(key, defaultValue) {
+        /** @type {S extends string ? S : undefined} */
+        let value = undefined;
         if (typeof defaultValue !== "undefined") {
-            defaultValue = String(defaultValue);
+            value = /** @type {S extends string ? S : undefined} */(String(defaultValue));
         }
 
-        return (key in this.source) ? this.source[key] : defaultValue;
+        return (key in this.source) ? this.source[key] : value;
     }
 
     /**
@@ -101,10 +105,11 @@ export class Env {
      * variable names. 
      * Optionally returns a default value if the environment variable doesn't
      * exist.
+     * @template [S=undefined]
      * @param {string[]} keys An array of environment variable names.
-     * @param {string} [defaultValue] The default value to return if the
+     * @param {S} [defaultValue] The default value to return if the
      *      environment variable is not found.
-     * @returns {string|undefined} The environment variable value if found or undefined if not.
+     * @returns {S extends string ? S : (string|S)} The environment variable value if found or undefined if not.
      * @throws {TypeError} If keys is not an array with at least one item.
      */
     first(keys, defaultValue) {
@@ -118,12 +123,13 @@ export class Env {
                 return this.source[key];
             }
         }
-
+        /** @type {S extends string ? S : undefined} */
+        let value = undefined;
         if (typeof defaultValue !== "undefined") {
-            defaultValue = String(defaultValue);
+            value = /** @type {S extends string ? S : undefined} */(String(defaultValue));
         }
 
-        return defaultValue;
+        return value;
     }
 
     /**
@@ -192,7 +198,7 @@ export class Env {
             configurable: false
         });
 
-        /** @type object */
+        /** @type {object} */
         return existsProxy;
     }
 
@@ -226,7 +232,7 @@ export class Env {
             configurable: false
         });
 
-        /** @type object */
+        /** @type {object} */
         return requiredProxy;
     }
 
