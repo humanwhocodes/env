@@ -27,7 +27,7 @@ const defaultEnvSource = (() => {
 })();
 
 /**
- * Throws an error saying that the key was found.
+ * Throws an error saying that the key was not found.
  * @param {string} key The key to report as missing.
  * @returns {void}
  * @throws {Error} Always. 
