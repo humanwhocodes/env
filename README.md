@@ -6,7 +6,7 @@ If you find this useful, please consider supporting my work with a [donation](ht
 
 ## Description
 
-A utility for verifying that environment variables are present in Node.js and Deno. The main use case is to easily throw an error when an environment variable is missing. This is most useful immediately after a Node.js or Deno program has been initiated, to fail fast and let you know that environment variables haven't been setup correctly.
+A utility for verifying that environment variables are present in Node.js, Deno, and Bun. The main use case is to easily throw an error when an environment variable is missing. This is most useful immediately after a Node.js or Deno program has been initiated, to fail fast and let you know that environment variables haven't been setup correctly.
 
 ## Usage
 
@@ -15,7 +15,7 @@ A utility for verifying that environment variables are present in Node.js and De
 Install using [npm][npm] or [yarn][yarn]:
 
 ```
-npm install @humanwhocodes/env --save
+npm install @humanwhocodes/env
 
 # or
 
@@ -43,6 +43,22 @@ import { Env } from "https://cdn.skypack.dev/@humanwhocodes/env?dts";
 ```
 
 By default, an `Env` instance will read from `Deno.env`.
+
+### Bun
+
+Install using this command:
+
+```
+bun add @humanwhocodes/env
+```
+
+Import into your Bun project:
+
+```js
+import { Env } from "@humanwhocodes/env";
+```
+
+By default, an `Env` instance will read from `process.env`.
 
 ### Browser
 
