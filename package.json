@@ -51,7 +51,7 @@
   "license": "BSD-3-Clause",
   "devDependencies": {
     "chai": "4.3.6",
-    "eslint": "5.16.0",
+    "eslint": "^8.21.0",
     "esm": "3.2.25",
     "lint-staged": "10.5.4",
     "mocha": "8.4.0",
