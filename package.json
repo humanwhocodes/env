@@ -50,7 +50,7 @@
   "author": "Nicholas C. Zaks",
   "license": "BSD-3-Clause",
   "devDependencies": {
-    "chai": "4.3.6",
+    "chai": "4.3.7",
     "eslint": "^8.21.0",
     "esm": "3.2.25",
     "lint-staged": "10.5.4",
