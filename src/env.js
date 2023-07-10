@@ -63,18 +63,18 @@ export class Env {
 	 * @param {object} [options] Additional, optional configuration.
 	 * @param {object} [options.onKeyNotFound] The function called when a required key is not found.
 	 */
-	constructor(source = defaultEnvSource, options = {}) {
+    constructor(source = defaultEnvSource, options = {}) {
 
         /**
          * The object from which to read environment information.
          * @type {object}
          */
         this.source = source;
-		/**
+        /**
 		 * The function called when a required key is not found.
 		 * @type {function}
 		 */
-		this.onKeyNotFound = options.onKeyNotFound || defaultKeyNotFound;
+        this.onKeyNotFound = options.onKeyNotFound || defaultKeyNotFound;
     }
 
     /**
@@ -186,9 +186,8 @@ export class Env {
      * @returns {object} A proxy object.
      */
     get exists() {
-
         const existsProxy = new Proxy(this.source, {
-            get(target, key) {
+            get: (target, key) => {
                 if (key in target) {
                     return target[key];
                 }
@@ -218,7 +217,7 @@ export class Env {
     get required() {
 
         const requiredProxy = new Proxy(this.source, {
-            get(target, key) {
+            get: (target, key) => {
                 if (key in target) {
                     if (target[key] === "") {
                         emptyString(key);
