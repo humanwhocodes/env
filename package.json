@@ -7,7 +7,8 @@
   "types": "dist/env.d.ts",
   "exports": {
     "require": "./dist/env.cjs.js",
-    "import": "./dist/env.mjs"
+    "import": "./dist/env.mjs",
+    "types": "dist/env.d.ts",
   },
   "files": [
     "dist"
