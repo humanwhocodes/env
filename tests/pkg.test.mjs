@@ -5,7 +5,7 @@
 import fs from "fs";
 
 const pkg = JSON.parse(fs.readFileSync("./package.json", "utf8"));
-const url = new URL("../" + pkg.exports.import, import.meta.url);
+const url = new URL("../" + pkg.exports.import.default, import.meta.url);
 
 import(url).then(({ Env }) => {
     new Env();
