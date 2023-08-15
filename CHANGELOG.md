@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.4](https://github.com/humanwhocodes/env/compare/v2.2.3...v2.2.4) (2023-08-15)
+
+
+### Bug Fixes
+
+* export types for typescript ([#78](https://github.com/humanwhocodes/env/issues/78)) ([81348f2](https://github.com/humanwhocodes/env/commit/81348f206047b5faa94fee8ebc2659de6b74ebbf))
+
 ## [2.2.3](https://github.com/humanwhocodes/env/compare/v2.2.1...v2.2.3) (2023-01-26)
 
 
