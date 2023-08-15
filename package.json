@@ -6,8 +6,14 @@
   "module": "dist/env.mjs",
   "types": "dist/env.d.ts",
   "exports": {
-    "require": "./dist/env.cjs.js",
-    "import": "./dist/env.mjs"
+    "require": {
+      "default": "./dist/env.cjs.js",
+      "types": "./dist/env.d.ts"
+    },
+    "import": {
+      "default": "./dist/env.mjs",
+      "types": "./dist/env.d.ts"
+    }
   },
   "files": [
     "dist"
@@ -57,7 +63,7 @@
     "mocha": "8.4.0",
     "rollup": "1.32.1",
     "rollup-plugin-babel-minify": "9.0.0",
-    "typescript": "4.7.4",
+    "typescript": "5.1.6",
     "yorkie": "2.0.0"
   }
 }

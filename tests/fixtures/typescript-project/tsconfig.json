@@ -1,3 +1,8 @@
 {
-    "compilerOptions": {}
+    "compilerOptions": {
+        "skipLibCheck": false,
+        "module": "NodeNext",
+        "strict": true,
+    },
+    "files": ["index.ts"]
 }
