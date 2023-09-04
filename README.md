@@ -143,6 +143,27 @@ const username = env.get("USERNAME");
 const password = env.require("PASSWORD");
 ```
 
+Last, you can specify custom error classes to throw for the two different types of errors: key not found and empty string. Each error constructor is passed the string key that caused the error. Here's an example:
+
+```js
+class MyKeyNotFoundError extends Error {
+    constructor(key) {
+        super(`Yo this key isn't here: ${key}.`);
+    }
+}
+
+class MyEmptyStringError extends Error {
+    constructor(key) {
+        super(`Hey! This key is empty: ${key}.`);
+    }
+}
+
+Env.KeyNotFoundError = MyKeyNotFoundError;
+Env.EmptyStringError = MyEmptyStringError;
+```
+
+Note that changing the error classes affects all instances of `Env`, both those that are already created and those that will be created within the same lifetime.
+
 ## Developer Setup
 
 1. Fork the repository
