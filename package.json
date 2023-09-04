@@ -63,7 +63,7 @@
     "mocha": "8.4.0",
     "rollup": "1.32.1",
     "rollup-plugin-babel-minify": "9.0.0",
-    "typescript": "5.1.6",
+    "typescript": "5.2.2",
     "yorkie": "2.0.0"
   }
 }
