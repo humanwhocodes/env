@@ -28,24 +28,62 @@ const defaultEnvSource = (() => {
 
 })();
 
+//-----------------------------------------------------------------------------
+// Errors
+//-----------------------------------------------------------------------------
+
 /**
- * Throws an error saying that the key was not found.
- * @param {PropertyKey} key The key to report as missing.
- * @returns {void}
- * @throws {Error} Always. 
+ * The error thrown when a required key is not found.
  */
-function keyNotFound(key) {
-    throw new Error(`Required environment variable '${String(key)}' not found.`);
+export class EnvKeyNotFoundError extends Error {
+
+    /**
+     * Creates a new instance.
+     * @param {string} key The key that wasn't found. 
+     */
+    constructor(key) {
+
+        super(`Required environment variable '${key}' not found.`);
+
+        /**
+         * The key that wasn't found.
+         * @type {string}
+         */
+        this.key = key;
+
+        /**
+         * Easily identifiable name for this error type.
+         * @type {string}
+         */
+        this.name = "EnvKeyNotFoundError";
+    }
 }
 
 /**
- * Throws an error saying that the key was an empty string.
- * @param {PropertyKey} key The key to report as an empty string.
- * @returns {void}
- * @throws {Error} Always.
+ * The error thrown when a required key is present but is an empty string.
  */
-function emptyString(key) {
-    throw new Error(`Required environment variable '${String(key)}' is an empty string.`);
+export class EnvEmptyStringError extends Error {
+
+    /**
+     * Creates a new instance.
+     * @param {string} key The key that wasn't found. 
+     */
+    constructor(key) {
+
+        super(`Required environment variable '${key}' is an empty string.`);
+
+        /**
+         * The key that wasn't found.
+         * @type {string}
+         */
+        this.key = key;
+
+        /**
+         * Easily identifiable name for this error type.
+         * @type {string}
+         */
+        this.name = "EnvEmptyStringError";
+    }
 }
 
 //-----------------------------------------------------------------------------
@@ -143,9 +181,9 @@ export class Env {
     require(key) {
         const value = this.get(key);
         if (typeof value === "undefined") {
-            keyNotFound(key);
+            throw new Env.KeyNotFoundError(key);
         } else if (value === "") {
-            emptyString(key);
+            throw new Env.EmptyStringError(key);
         } else {
             return value;
         }
@@ -164,9 +202,9 @@ export class Env {
 
         const value = this.first(keys);
         if (typeof value === "undefined") {
-            keyNotFound(`[${keys}]`);
+            throw new Env.KeyNotFoundError(`[${keys}]`);
         } else if (value === "") {
-            emptyString(`[${keys}]`);
+            throw new Env.EmptyStringError(`[${keys}]`);
         } else {
             return value;
         }
@@ -186,7 +224,7 @@ export class Env {
                     return target[key];
                 }
                 
-                keyNotFound(key);
+                throw new Env.KeyNotFoundError(key);
             }
         });
 
@@ -214,13 +252,13 @@ export class Env {
             get(target, key) {
                 if (key in target) {
                     if (target[key] === "") {
-                        emptyString(key);
+                        throw new Env.EmptyStringError(key);
                     }
 
                     return target[key];
                 }
                 
-                keyNotFound(key);
+                throw new Env.KeyNotFoundError(key);
             }
         });
 
@@ -237,3 +275,15 @@ export class Env {
     }
 
 }
+
+/**
+ * The error to use when a key isn't found.
+ * @type {new (key: PropertyKey) => Error}
+ */
+Env.KeyNotFoundError = EnvKeyNotFoundError;
+
+/**
+ * The error to use when a key isn't found.
+ * @type {new (key: PropertyKey) => Error}
+ */
+Env.EmptyStringError = EnvEmptyStringError;

@@ -1,13 +1,13 @@
 /**
  * @fileoverview Tests for the Env class.
  */
-/*global describe, it*/
+/*global describe, it, beforeEach, afterEach*/
 
 //-----------------------------------------------------------------------------
 // Requirements
 //-----------------------------------------------------------------------------
 
-import { Env } from "../src/env.js";
+import { Env, EnvKeyNotFoundError, EnvEmptyStringError } from "../src/env.js";
 import { assert } from "chai";
 
 //-----------------------------------------------------------------------------
@@ -158,7 +158,7 @@ describe("Env", () => {
 
             assert.throws(() => {
                 env.require("PASSWORD");
-            }, /PASSWORD/);
+            }, Env.KeyNotFoundError, /PASSWORD/);
         });
 
         it("should throw an error when the environment variable is an empty string", () => {
@@ -166,7 +166,7 @@ describe("Env", () => {
 
             assert.throws(() => {
                 env.require("OTHER");
-            }, /OTHER/);
+            }, Env.EmptyStringError, /OTHER/);
         });
 
     });
@@ -201,7 +201,7 @@ describe("Env", () => {
 
             assert.throws(() => {
                 env.requireFirst(["foo", "bar"]);
-            }, /Required environment variable '\[foo,bar\]' not found/);
+            }, Env.KeyNotFoundError, /Required environment variable '\[foo,bar\]' not found/);
 
         });
 
@@ -255,7 +255,7 @@ describe("Env", () => {
 
             assert.throws(() => {
                 env.exists.PASSWORD;
-            }, /PASSWORD/);
+            }, Env.KeyNotFoundError, /PASSWORD/);
         });
 
     });
@@ -278,7 +278,7 @@ describe("Env", () => {
 
             assert.throws(() => {
                 env.required.PASSWORD;
-            }, /PASSWORD/);
+            }, Env.KeyNotFoundError, /PASSWORD/);
         });
 
         it("should throw an error when the environment variable is an empty string", () => {
@@ -286,9 +286,88 @@ describe("Env", () => {
 
             assert.throws(() => {
                 env.required.OTHER;
-            }, /OTHER/);
+            }, Env.EmptyStringError, /OTHER/);
         });
 
     });
 
+    describe("Custom Errors", () => {
+
+        const source = {
+            USERNAME: "humanwhocodes",
+            OTHER: ""
+        };
+
+        class MyError1 extends Error {
+            constructor(key) {
+                super(key);
+            }
+        }
+
+        class MyError2 extends Error {
+            constructor(key) {
+                super(key);
+            }
+        }
+
+        beforeEach(() => {
+            Env.KeyNotFoundError = MyError1;
+            Env.EmptyStringError = MyError2;
+        });
+        
+        afterEach(() => {
+            Env.KeyNotFoundError = EnvKeyNotFoundError;
+            Env.EmptyStringError = EnvEmptyStringError;
+        });
+
+        it("should throw an error when the environment variable doesn't exist", () => {
+            const env = new Env(source);
+
+            assert.throws(() => {
+                env.require("PASSWORD");
+            }, MyError1, /PASSWORD/);
+        });
+
+        it("should throw an error when the environment variable is an empty string", () => {
+            const env = new Env(source);
+
+            assert.throws(() => {
+                env.require("OTHER");
+            }, MyError2, /OTHER/);
+        });
+
+        it("should throw an error when none of the arguments exist", () => {
+            const env = new Env(source);
+
+            assert.throws(() => {
+                env.requireFirst(["foo", "bar"]);
+            }, MyError1, /foo,bar/);
+
+        });
+
+        it("should throw an error when the environment variable doesn't exist", () => {
+            const env = new Env(source);
+
+            assert.throws(() => {
+                env.exists.PASSWORD;
+            }, MyError1, /PASSWORD/);
+        });
+
+        it("should throw an error when the environment variable doesn't exist", () => {
+            const env = new Env(source);
+
+            assert.throws(() => {
+                env.required.PASSWORD;
+            }, MyError1, /PASSWORD/);
+        });
+
+        it("should throw an error when the environment variable is an empty string", () => {
+            const env = new Env(source);
+
+            assert.throws(() => {
+                env.required.OTHER;
+            }, MyError2, /OTHER/);
+        });
+
+    });
 });
