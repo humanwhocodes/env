@@ -70,7 +70,7 @@ export class EnvEmptyStringError extends Error {
      */
     constructor(key) {
 
-        super(`Required environment variable '${String(key)}' is an empty string.`);
+        super(`Required environment variable '${key}' is an empty string.`);
 
         /**
          * The key that wasn't found.
