@@ -66,7 +66,7 @@ export class EnvEmptyStringError extends Error {
 
     /**
      * Creates a new instance.
-     * @param {PropertyKey} key The key that wasn't found. 
+     * @param {string} key The key that wasn't found. 
      */
     constructor(key) {
 
