@@ -47,7 +47,7 @@ export class EnvKeyNotFoundError extends Error {
 
         /**
          * The key that wasn't found.
-         * @type {PropertyKey}
+         * @type {string}
          */
         this.key = key;
 
