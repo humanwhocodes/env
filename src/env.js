@@ -43,7 +43,7 @@ export class EnvKeyNotFoundError extends Error {
      */
     constructor(key) {
 
-        super(`Required environment variable '${String(key)}' not found.`);
+        super(`Required environment variable '${key}' not found.`);
 
         /**
          * The key that wasn't found.
