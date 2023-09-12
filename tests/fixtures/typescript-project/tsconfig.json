@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "skipLibCheck": false,
-        "module": "NodeNext",
+        "module": "ESNext",
         "strict": true,
     },
     "files": ["index.ts"]
