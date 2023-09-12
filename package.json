@@ -2,16 +2,17 @@
   "name": "@humanwhocodes/env",
   "version": "2.2.4",
   "description": "A utility to verify that environment variables exist.",
-  "main": "dist/env.cjs.js",
-  "module": "dist/env.mjs",
+  "type": "module",
+  "main": "dist/env.cjs",
+  "module": "dist/env.js",
   "types": "dist/env.d.ts",
   "exports": {
     "require": {
-      "default": "./dist/env.cjs.js",
+      "default": "./dist/env.cjs",
       "types": "./dist/env.d.ts"
     },
     "import": {
-      "default": "./dist/env.mjs",
+      "default": "./dist/env.js",
       "types": "./dist/env.d.ts"
     }
   },
@@ -38,7 +39,7 @@
     "prepare": "npm run build",
     "lint": "eslint src/ tests/",
     "pretest": "npm run build",
-    "test:unit": "mocha -r esm tests/env.test.js",
+    "test:unit": "mocha tests/env.test.js",
     "test:build": "node tests/pkg.test.cjs && node tests/pkg.test.mjs",
     "test:types": "node tests/types.test.js",
     "test": "npm run test:unit && npm run test:build && npm run test:types"
@@ -58,7 +59,6 @@
   "devDependencies": {
     "chai": "4.3.8",
     "eslint": "^8.21.0",
-    "esm": "3.2.25",
     "lint-staged": "14.0.1",
     "mocha": "8.4.0",
     "rollup": "1.32.1",
