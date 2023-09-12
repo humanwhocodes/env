@@ -5,7 +5,7 @@ export default [
         input: "src/env.js",
         output: [
             {
-                file: "dist/env.cjs.js",
+                file: "dist/env.cjs",
                 format: "cjs"
             },
             {

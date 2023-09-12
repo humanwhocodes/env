@@ -3,6 +3,12 @@
  */
 /* eslint-disable no-console */
 
-const { execSync } = require("child_process");
-execSync("cd tests/fixtures/typescript-project && npm i");
-console.log("env.d.ts load: success");
+import { execSync } from "child_process";
+try {
+    execSync("cd tests/fixtures/typescript-project && npm i");
+    console.log("env.d.ts load: success");
+} catch (error) {
+    console.error(error.stdout.toString());
+    console.error(error.stderr.toString());
+    process.exit(1);
+}
