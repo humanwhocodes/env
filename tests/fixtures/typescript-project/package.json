@@ -11,5 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "@humanwhocodes/env": "file:../../../"
+  },
+  "devDependencies": {
+    "typescript": "5.2.2"
   }
 }
