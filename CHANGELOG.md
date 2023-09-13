@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/humanwhocodes/env/compare/v3.0.0...v3.0.1) (2023-09-13)
+
+
+### Bug Fixes
+
+* Use Node.js 18 for releases ([1b6d267](https://github.com/humanwhocodes/env/commit/1b6d2673e23306a6d620ee7613ad1f24a407e206))
+
 ## [3.0.0](https://github.com/humanwhocodes/env/compare/v2.2.4...v3.0.0) (2023-09-12)
 
 
