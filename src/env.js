@@ -93,7 +93,7 @@ export class EnvEmptyStringError extends Error {
 /**
  * A utility for interacting with environment variables
  * 
- * @template {Record<string, string>} [T=Record<string, string>]
+ * @template {object} [T=Record<string, string|undefined>]
  */
 export class Env {
 
@@ -118,7 +118,7 @@ export class Env {
      * 
      * @overload
      * @param {string} key The environment variable name to retrieve.
-     * @param {string} defaultValue The default value to return if the
+     * @param {string|number|boolean} defaultValue The default value to return if the
      *      environment variable is not found.
      * @returns {string} The environment variable value if found or undefined if not.
      */
@@ -131,15 +131,16 @@ export class Env {
      */
     /**
      * @param {string} key 
-     * @param {string} [defaultValue] 
+     * @param {string|number|boolean} [defaultValue] 
      */
     get(key, defaultValue) {        
         let value = undefined;
         if (typeof defaultValue !== "undefined") {
+            // this is defensive, since `defaultValue` is expected to be a `string`
             value = String(defaultValue);
         }
 
-        return (key in this.source) ? this.source[key] : value;
+        return (key in this.source) ? this.source[/** @type {keyof T} */(key)] : value;
     }
 
     /**
@@ -162,8 +163,8 @@ export class Env {
      * 
      * @overload
      * @param {string[]} keys The environment variable name to retrieve.
-     * @param {string} defaultValue The default value to return if the
-     *      environment variable is not found.
+     * @param {string|number|boolean} defaultValue The default value to return if the
+     *      environment variable is not found. Will be coerced to a string.
      * @returns {string} The environment variable value if found or undefined if not.
      * @throws {TypeError} If keys is not an array with at least one item.
      */
@@ -178,7 +179,7 @@ export class Env {
      */
     /**
      * @param {string[]} keys
-     * @param {string} [defaultValue] 
+     * @param {string|number|boolean} [defaultValue] 
      */
     first(keys, defaultValue) {
 
@@ -188,7 +189,7 @@ export class Env {
 
         for (const key of keys) {
             if (key in this.source) {
-                return this.source[key];
+                return this.source[/** @type {keyof T} */(key)];
             }
         }
         /** @type {string|undefined} */
@@ -252,7 +253,7 @@ export class Env {
             get(target, key) {
                 key = String(key);
                 if (key in target) {
-                    return target[key];
+                    return target[/** @type {keyof T} */(key)];
                 }
                 
                 throw new Env.KeyNotFoundError(key);
@@ -282,11 +283,11 @@ export class Env {
             get(target, key) {
                 key = String(key);
                 if (key in target) {
-                    if (target[key] === "") {
+                    if (target[/** @type {keyof T} */(key)] === "") {
                         throw new Env.EmptyStringError(key);
                     }
 
-                    return target[key];
+                    return target[/** @type {keyof T} */(key)];
                 }
                 
                 throw new Env.KeyNotFoundError(key);
