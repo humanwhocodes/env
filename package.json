@@ -58,6 +58,8 @@
   "license": "BSD-3-Clause",
   "devDependencies": {
     "@eslint/js": "^8.49.0",
+    "@tsconfig/node16": "^16.1.1",
+    "@types/node": "20.8.9",
     "chai": "4.3.10",
     "eslint": "^8.21.0",
     "lint-staged": "14.0.1",
