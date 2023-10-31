@@ -1,0 +1,12 @@
+{
+    "extends": "@tsconfig/node16/tsconfig.json",
+    "include": [
+        "./*.test.js", "./*.test.mjs"
+    ],
+    "compilerOptions": {
+        "noEmit": true,
+        "allowJs": true,
+        "checkJs": true,
+        "types": ["node", "mocha"],
+    }
+}
