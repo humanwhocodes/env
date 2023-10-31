@@ -92,37 +92,51 @@ export class EnvEmptyStringError extends Error {
 
 /**
  * A utility for interacting with environment variables
+ * 
+ * @template {Record<string, string>} [T=Record<string, string>]
  */
 export class Env {
 
     /**
      * Creates a new instance of Env.
-     * @param {object} [source] The environment variable object to read from. 
+     * @param {T} [source] The environment variable object to read from. 
      */
     constructor(source = defaultEnvSource) {
 
         /**
          * The object from which to read environment information.
-         * @type {object}
+         * @type {T}
          */
         this.source = source;
     }
 
     /**
      * Retrieves an environment variable without checking for its presence.
-     * Optionally returns a default value if the environment variable doesn't
+     * 
+     * Returns a default value if the environment variable doesn't
      * exist.
-     * @template [S=undefined]
+     * 
+     * @overload
      * @param {string} key The environment variable name to retrieve.
-     * @param {S} [defaultValue] The default value to return if the
+     * @param {string} defaultValue The default value to return if the
      *      environment variable is not found.
-     * @returns {S extends string ? S : (string|S)} The environment variable value if found or undefined if not.
+     * @returns {string} The environment variable value if found or undefined if not.
      */
-    get(key, defaultValue) {
-        /** @type {S extends string ? S : undefined} */
+    /**
+     * Retrieves an environment variable without checking for its presence.
+     * 
+     * @overload 
+     * @param {string} key 
+     * @returns {string|undefined} 
+     */
+    /**
+     * @param {string} key 
+     * @param {string} [defaultValue] 
+     */
+    get(key, defaultValue) {        
         let value = undefined;
         if (typeof defaultValue !== "undefined") {
-            value = /** @type {S extends string ? S : undefined} */(String(defaultValue));
+            value = String(defaultValue);
         }
 
         return (key in this.source) ? this.source[key] : value;
@@ -138,17 +152,33 @@ export class Env {
         return key in this.source;
     }
 
+
     /**
      * Retrieves the first environment variable found in a list of environment
-     * variable names. 
-     * Optionally returns a default value if the environment variable doesn't
+     * variable names.
+     *  
+     * Returns a default value if the environment variable doesn't
      * exist.
-     * @template [S=undefined]
-     * @param {string[]} keys An array of environment variable names.
-     * @param {S} [defaultValue] The default value to return if the
+     * 
+     * @overload
+     * @param {string[]} keys The environment variable name to retrieve.
+     * @param {string} defaultValue The default value to return if the
      *      environment variable is not found.
-     * @returns {S extends string ? S : (string|S)} The environment variable value if found or undefined if not.
+     * @returns {string} The environment variable value if found or undefined if not.
      * @throws {TypeError} If keys is not an array with at least one item.
+     */
+    /**
+     * Retrieves the first environment variable found in a list of environment
+     * variable names.
+     * 
+     * @overload 
+     * @param {string[]} keys 
+     * @returns {string|undefined} 
+     * @throws {TypeError} If keys is not an array with at least one item.
+     */
+    /**
+     * @param {string[]} keys
+     * @param {string} [defaultValue] 
      */
     first(keys, defaultValue) {
 
@@ -161,10 +191,10 @@ export class Env {
                 return this.source[key];
             }
         }
-        /** @type {S extends string ? S : undefined} */
+        /** @type {string|undefined} */
         let value = undefined;
         if (typeof defaultValue !== "undefined") {
-            value = /** @type {S extends string ? S : undefined} */(String(defaultValue));
+            value = String(defaultValue);
         }
 
         return value;
@@ -214,12 +244,13 @@ export class Env {
      * Lazy-loading property containing a proxy that can be used to
      * automatically throw errors when an undefined environment variable
      * is accessed.
-     * @returns {object} A proxy object.
+     * @returns {T} A proxy object.
      */
     get exists() {
 
         const existsProxy = new Proxy(this.source, {
             get(target, key) {
+                key = String(key);
                 if (key in target) {
                     return target[key];
                 }
@@ -236,7 +267,6 @@ export class Env {
             configurable: false
         });
 
-        /** @type {object} */
         return existsProxy;
     }
 
@@ -244,12 +274,13 @@ export class Env {
      * Lazy-loading property containing a proxy that can be used to
      * automatically throw errors when an undefined or empty string
      * environment variable is accessed.
-     * @returns {object} A proxy object.
+     * @returns {T} A proxy object.
      */
     get required() {
 
         const requiredProxy = new Proxy(this.source, {
             get(target, key) {
+                key = String(key);
                 if (key in target) {
                     if (target[key] === "") {
                         throw new Env.EmptyStringError(key);
@@ -270,7 +301,6 @@ export class Env {
             configurable: false
         });
 
-        /** @type {object} */
         return requiredProxy;
     }
 
@@ -278,12 +308,12 @@ export class Env {
 
 /**
  * The error to use when a key isn't found.
- * @type {new (key: PropertyKey) => Error}
+ * @type {new (key: string) => Error}
  */
 Env.KeyNotFoundError = EnvKeyNotFoundError;
 
 /**
  * The error to use when a key isn't found.
- * @type {new (key: PropertyKey) => Error}
+ * @type {new (key: string) => Error}
  */
 Env.EmptyStringError = EnvEmptyStringError;
