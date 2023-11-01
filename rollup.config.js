@@ -1,4 +1,4 @@
-import minify from "rollup-plugin-babel-minify";
+import minify from "@rollup/plugin-terser";
 
 export default [
     {
@@ -21,7 +21,10 @@ export default [
     {
         input: "src/env.js",
         plugins: [minify({
-            comments: false
+            format: {comments: false},
+            mangle: {
+                keep_classnames: true
+            }
         })],
         output: {
             file: "dist/env.min.js",
