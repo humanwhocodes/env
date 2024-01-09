@@ -8,12 +8,12 @@
   "types": "dist/env.d.ts",
   "exports": {
     "require": {
-      "default": "./dist/env.cjs",
-      "types": "./dist/env.d.ts"
+      "types": "./dist/env.d.ts",
+      "default": "./dist/env.cjs"
     },
     "import": {
-      "default": "./dist/env.js",
-      "types": "./dist/env.d.ts"
+      "types": "./dist/env.d.ts",
+      "default": "./dist/env.js"
     }
   },
   "files": [
