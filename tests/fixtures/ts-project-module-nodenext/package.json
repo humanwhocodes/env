@@ -1,7 +1,7 @@
 {
-  "name": "typescript-project",
+  "name": "ts-project-nodenext-module",
   "version": "1.0.0",
-  "description": "",
+  "description": "Fixture of a TS consumer using `module: nodenext`",
   "main": "index.js",
   "type": "module",
   "scripts": {

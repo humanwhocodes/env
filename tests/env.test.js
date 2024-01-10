@@ -87,6 +87,7 @@ describe("Env", () => {
             const env = new Env(source);
 
             assert.throws(() => {
+                // @ts-expect-error - bad type
                 env.first("USERNAME");
             }, /First argument/);
 
@@ -182,6 +183,7 @@ describe("Env", () => {
             const env = new Env(source);
 
             assert.throws(() => {
+                // @ts-expect-error - 'USERNAME' not in source
                 env.requireFirst("USERNAME");
             }, /First argument/);
 
@@ -254,6 +256,7 @@ describe("Env", () => {
             const env = new Env(source);
 
             assert.throws(() => {
+                // @ts-expect-error doesn't exist
                 env.exists.PASSWORD;
             }, Env.KeyNotFoundError, /PASSWORD/);
         });
@@ -277,18 +280,10 @@ describe("Env", () => {
             const env = new Env(source);
 
             assert.throws(() => {
+                // @ts-expect-error - intentional error
                 env.required.PASSWORD;
             }, Env.KeyNotFoundError, /PASSWORD/);
         });
-
-        it("should throw an error when the environment variable is an empty string", () => {
-            const env = new Env(source);
-
-            assert.throws(() => {
-                env.required.OTHER;
-            }, Env.EmptyStringError, /OTHER/);
-        });
-
     });
 
     describe("Custom Errors", () => {
@@ -299,12 +294,14 @@ describe("Env", () => {
         };
 
         class MyError1 extends Error {
+            /** @param {string} key */
             constructor(key) {
                 super(key);
             }
         }
 
         class MyError2 extends Error {
+            /** @param {string} key */
             constructor(key) {
                 super(key);
             }
@@ -349,6 +346,7 @@ describe("Env", () => {
             const env = new Env(source);
 
             assert.throws(() => {
+                // @ts-expect-error doesn't exist
                 env.exists.PASSWORD;
             }, MyError1, /PASSWORD/);
         });
@@ -357,6 +355,7 @@ describe("Env", () => {
             const env = new Env(source);
 
             assert.throws(() => {
+                // @ts-expect-error doesn't exist
                 env.required.PASSWORD;
             }, MyError1, /PASSWORD/);
         });

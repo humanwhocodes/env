@@ -60,6 +60,8 @@
     "@eslint/js": "^8.49.0",
     "@rollup/plugin-terser": "0.4.4",
     "@tsconfig/node16": "^16.1.1",
+    "@types/chai": "^4.3.9",
+    "@types/mocha": "^10.0.3",
     "@types/node": "20.8.9",
     "chai": "4.3.10",
     "eslint": "^8.21.0",
