@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.2](https://github.com/humanwhocodes/env/compare/v3.0.1...v3.0.2) (2024-01-18)
+
+
+### Bug Fixes
+
+* **types:** widen too-narrow types ([#102](https://github.com/humanwhocodes/env/issues/102)) ([6ad2e51](https://github.com/humanwhocodes/env/commit/6ad2e511f37f791d4cd2820e8895faa9be9da6ec))
+* use TypeScript overloading ([#99](https://github.com/humanwhocodes/env/issues/99)) ([6592f06](https://github.com/humanwhocodes/env/commit/6592f069a7df46b0714d0baea3b69cd716a61e2d))
+
 ## [3.0.1](https://github.com/humanwhocodes/env/compare/v3.0.0...v3.0.1) (2023-09-13)
 
 
