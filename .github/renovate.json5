@@ -15,7 +15,7 @@
       matchPackageNames: ['chai'],
       matchUpdateTypes: ['major'],
       enabled: false
-    }
+    },
     // only send upgrade for deps (from the npm registry) after they've been
     // published for 30 days
     {
