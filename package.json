@@ -63,7 +63,7 @@
     "@types/chai": "^4.3.9",
     "@types/mocha": "^10.0.3",
     "@types/node": "20.11.14",
-    "chai": "4.4.0",
+    "chai": "4.4.1",
     "eslint": "^8.21.0",
     "lint-staged": "15.2.1",
     "mocha": "10.2.0",
