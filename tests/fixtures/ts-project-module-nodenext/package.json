@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "prepare": "tsc -b"
+    "prepare": "tsc -b",
+    "check": "tsc -p . --noEmit"
   },
   "keywords": [],
   "author": "",
