@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Fixture of a TS consumer using `module: nodenext`",
   "main": "index.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "prepare": "tsc -b"
   },
