@@ -8,7 +8,7 @@
   "types": "dist/env.d.ts",
   "exports": {
     "require": {
-      "types": "./dist/env.d.ts",
+      "types": "./dist/env.d.cts",
       "default": "./dist/env.cjs"
     },
     "import": {
@@ -35,7 +35,7 @@
     "url": "https://github.com/sponsors/nzakas"
   },
   "scripts": {
-    "build": "rollup -c && tsc",
+    "build": "rollup -c && tsc && tsc -p tsconfig.cjs.json",
     "prepare": "npm run build",
     "lint": "eslint src/ tests/",
     "pretest": "npm run build",
