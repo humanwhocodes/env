@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "skipLibCheck": false,
+        "module": "Node16",
+        "strict": true,
+    },
+    "files": [
+        "index.ts"
+    ]
+}

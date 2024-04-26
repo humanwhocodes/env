@@ -1,0 +1,16 @@
+{
+  "name": "ts-project-module-commonjs-node16",
+  "version": "1.0.0",
+  "description": "Fixture of a TS consumer using `module: node16`",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "prepare": "tsc -b"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@humanwhocodes/env": "file:../../../"
+  }
+}

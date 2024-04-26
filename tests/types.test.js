@@ -11,6 +11,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const BASE_FIXTURE_DIR = path.join(__dirname, "fixtures");
 const FIXTURE_DIRS = [
     path.join(BASE_FIXTURE_DIR, "ts-project-module-commonjs"),
+    path.join(BASE_FIXTURE_DIR, "ts-project-module-commonjs-node16"),
     path.join(BASE_FIXTURE_DIR, "ts-project-module-nodenext"),
 ];
 
