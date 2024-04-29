@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.3](https://github.com/humanwhocodes/env/compare/v3.0.2...v3.0.3) (2024-04-26)
+
+
+### Bug Fixes
+
+* Creates CJS type declarations for CJS export. ([#138](https://github.com/humanwhocodes/env/issues/138)) ([26b6eb7](https://github.com/humanwhocodes/env/commit/26b6eb779d4243c7bf645e0db2245ed97fcfa9cc)), closes [#136](https://github.com/humanwhocodes/env/issues/136)
+
 ## [3.0.2](https://github.com/humanwhocodes/env/compare/v3.0.1...v3.0.2) (2024-01-18)
 
 
