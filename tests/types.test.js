@@ -17,7 +17,7 @@ const FIXTURE_DIRS = [
 
 try {
     for (const dir of FIXTURE_DIRS) {
-        execSync("npm i", {cwd: dir});
+        execSync("npm i --no-package-lock", {cwd: dir});
         console.log(`${path.relative(__dirname, dir)}: success`);
     }
     console.log("env.d.ts load: success");
