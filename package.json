@@ -35,7 +35,7 @@
     "url": "https://github.com/sponsors/nzakas"
   },
   "scripts": {
-    "build": "rollup -c && tsc && tsc -p tsconfig.cjs.json",
+    "build": "rollup -c && tsc && node -e \"fs.copyFileSync('./dist/env.d.ts', './dist/env.d.cts')\"",
     "prepare": "npm run build",
     "lint": "eslint src/ tests/",
     "pretest": "npm run build",
