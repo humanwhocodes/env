@@ -1,6 +1,6 @@
 {
   "name": "@humanwhocodes/env",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "A utility to verify that environment variables exist.",
   "type": "module",
   "main": "dist/env.cjs",

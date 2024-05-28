@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.4](https://github.com/humanwhocodes/env/compare/v3.0.3...v3.0.4) (2024-05-28)
+
+
+### Bug Fixes
+
+* **ci:** Add release-please manifest files ([#145](https://github.com/humanwhocodes/env/issues/145)) ([a7fd817](https://github.com/humanwhocodes/env/commit/a7fd8175561b96f64483d6a40efdccc78f510f53)), closes [#116](https://github.com/humanwhocodes/env/issues/116)
+
 ## [3.0.3](https://github.com/humanwhocodes/env/compare/v3.0.2...v3.0.3) (2024-04-26)
 
 
