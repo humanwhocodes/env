@@ -1,7 +1,6 @@
 /**
  * @fileoverview Tests that env.d.ts is valid.
  */
-/* eslint-disable no-console */
 
 import { execSync } from "child_process";
 import path from "path";
