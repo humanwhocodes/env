@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.5](https://github.com/humanwhocodes/env/compare/v3.0.4...v3.0.5) (2024-06-11)
+
+
+### Bug Fixes
+
+* Release unpublished updates ([f1cd44d](https://github.com/humanwhocodes/env/commit/f1cd44dd9a48ca4bada81fad5f66a7829317ca42))
+
 ## [3.0.4](https://github.com/humanwhocodes/env/compare/v3.0.3...v3.0.4) (2024-05-28)
 
 
