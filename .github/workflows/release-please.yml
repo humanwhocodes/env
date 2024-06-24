@@ -18,7 +18,7 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           registry-url: 'https://registry.npmjs.org'
         if: ${{ steps.release.outputs.release_created }}
       - run: npm ci
@@ -29,7 +29,7 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
 
       # Tweets out release announcement
-      - run: 'npx @humanwhocodes/tweet "Env v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }} has been released!\n\nhttps://github.com/humanwhocodes/config-array/releases/tag/v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}"'
+      - run: 'npx @humanwhocodes/tweet "Env v${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }} has been released!\n\nhttps://github.com/humanwhocodes/config-array/releases/tag/${{ steps.release.outputs.tag_name }}"'
         if: ${{ steps.release.outputs.release_created }}
         env:
           TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
