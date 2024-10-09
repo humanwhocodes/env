@@ -65,7 +65,7 @@
     "@types/node": "20.16.1",
     "chai": "4.5.0",
     "eslint": "^9.0.0",
-    "lint-staged": "15.2.9",
+    "lint-staged": "15.2.10",
     "mocha": "10.7.3",
     "rollup": "3.29.5",
     "typescript": "5.5.4",
