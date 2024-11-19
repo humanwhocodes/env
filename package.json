@@ -54,7 +54,7 @@
     "environment",
     "environment variables"
   ],
-  "author": "Nicholas C. Zaks",
+  "author": "Nicholas C. Zakas",
   "license": "BSD-3-Clause",
   "devDependencies": {
     "@eslint/js": "^9.0.0",
