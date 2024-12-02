@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/humanwhocodes/env/compare/v3.0.5...v4.0.0) (2024-12-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* Adds `engines.node` field in `package.json` with value of `^16.20.0 || ^18.0.0 || ^20.0.0 || ^22.0.0`. Versions which do not satisfy this range are unsupported.
+
+### Features
+
+* establish baseline Node.js version support ([#184](https://github.com/humanwhocodes/env/issues/184)) ([8600392](https://github.com/humanwhocodes/env/commit/8600392de65b0d986515855144b9b280e78f2984))
+
 ## [3.0.5](https://github.com/humanwhocodes/env/compare/v3.0.4...v3.0.5) (2024-06-11)
 
 
