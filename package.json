@@ -68,7 +68,7 @@
     "lint-staged": "15.2.10",
     "mocha": "11.0.0",
     "rollup": "4.24.2",
-    "typescript": "5.6.3",
+    "typescript": "5.7.2",
     "yorkie": "2.0.0"
   },
   "engines": {
