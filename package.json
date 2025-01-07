@@ -62,7 +62,7 @@
     "@tsconfig/node16": "^16.1.1",
     "@types/chai": "^4.3.9",
     "@types/mocha": "^10.0.3",
-    "@types/node": "22.8.2",
+    "@types/node": "22.10.1",
     "chai": "4.5.0",
     "eslint": "^9.0.0",
     "lint-staged": "15.2.10",
