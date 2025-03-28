@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/humanwhocodes/env/compare/env-v4.0.0...env-v4.0.1) (2025-03-28)
+
+
+### Bug Fixes
+
+* Allow future node versions ([#210](https://github.com/humanwhocodes/env/issues/210)) ([d9771f1](https://github.com/humanwhocodes/env/commit/d9771f10a7eae48842e929f2d9bd94ec682921a2))
+
 ## [4.0.0](https://github.com/humanwhocodes/env/compare/v3.0.5...v4.0.0) (2024-12-02)
 
 
