@@ -67,7 +67,7 @@
     "eslint": "^9.0.0",
     "lint-staged": "15.5.2",
     "mocha": "11.2.2",
-    "rollup": "4.24.2",
+    "rollup": "4.40.2",
     "typescript": "5.8.3",
     "yorkie": "2.0.0"
   },
