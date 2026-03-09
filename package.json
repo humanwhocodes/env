@@ -59,7 +59,7 @@
   "devDependencies": {
     "@eslint/js": "^9.0.0",
     "@rollup/plugin-terser": "0.4.4",
-    "@tsconfig/node16": "^16.1.1",
+    "@tsconfig/node18": "^18.2.0",
     "@types/chai": "^4.3.9",
     "@types/mocha": "^10.0.3",
     "@types/node": "22.15.17",
