@@ -4,6 +4,7 @@
         "src/env.js"
     ],
     "compilerOptions": {
+        "rootDir": "src",
         "declaration": true,
         "emitDeclarationOnly": true,
         "allowJs": true,
