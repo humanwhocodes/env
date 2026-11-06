@@ -22,5 +22,12 @@
       matchDatasources: ['npm'],
       minimumReleaseAge: '30 days',
     },
+
+    // disable dev dependencies
+		{
+			matchDatasources: ["npm"],
+			matchDepTypes: ["devDependencies"],
+			enabled: false,
+		},
   ],
 }
